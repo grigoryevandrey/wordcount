@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"flag"
 	"fmt"
 	"os"
@@ -10,16 +9,17 @@ import (
 
 func main() {
 	src, err := readInput()
+
 	if err != nil {
 		fail(err)
 	}
-	
+
 	wordCount := 0
 
 	trimmed := strings.TrimSpace(src)
 
 	if (trimmed == "") {
-		fmt.Println(wordCount + 1)
+		fmt.Println(wordCount)
 		return
 	}
 
@@ -37,9 +37,6 @@ func main() {
 func readInput() (src string, err error) {
 	flag.Parse()
 	src = strings.Join(flag.Args(), "")
-	if src == "" {
-		return src, errors.New("missing string to match")
-	}
 	return src, nil
 }
 
